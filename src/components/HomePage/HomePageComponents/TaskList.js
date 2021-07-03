@@ -74,7 +74,12 @@ class TaskList extends React.Component{
             <div className='ma2 ba bw2 w-50 center bg-white-90 flex flex-column'>
                 <h1>{ this.props.listName}</h1>
                
-                <AddNewTaskPanel taskList={ this.props.taskList} onHasChanged={this.props.onHasChanged} taskType={this.props.taskType}/>
+                <AddNewTaskPanel 
+                    taskList={ this.props.taskList} 
+                    onHasChanged={this.props.onHasChanged} 
+                    taskType={this.props.taskType}
+                    userID={this.props.userID}
+                />
                 <SearchBox searchChange={this.onSearchChange} taskType={this.props.taskType} onChangeSortType={this.onChangeSortType}/>
                 <h3>On-Going:</h3>
                 <div className='mb2 ml2 mr2'>

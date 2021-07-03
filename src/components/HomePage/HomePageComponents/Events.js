@@ -16,7 +16,12 @@ class Events extends React.Component{
   render(){
     return (
         <div>
-        <TaskList listName="Events" taskList={this.props.eventsDB} onHasChanged={this.onHasChanged} taskType='event' userID={this.props.userID}/>
+        <TaskList listName="Events"
+         taskList={this.props.eventsDB}
+          onHasChanged={this.onHasChanged} 
+          taskType='event' 
+          userID={this.props.userID}
+        />
        </div>
     );
   }

@@ -17,7 +17,12 @@ class ToDos extends React.Component{
   render(){
     return (
       <div>
-       <TaskList listName="To Do List" taskList={this.props.todosDB} onHasChanged={this.onHasChanged} taskType='task'/>
+       <TaskList listName="To Do List" 
+        userID={this.props.userID} 
+        taskList={this.props.todosDB} 
+        onHasChanged={this.onHasChanged} 
+        taskType='toDo'
+      />
       </div>
     );
   }

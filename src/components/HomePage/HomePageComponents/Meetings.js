@@ -17,7 +17,12 @@ class Meetings extends React.Component{
   render(){
     return (
         <div>
-            <TaskList listName="Meetings" taskList={this.props.meetingsDB} onHasChanged={this.onHasChanged} taskType='meeting'/>
+            <TaskList listName="Meetings" 
+              taskList={this.props.meetingsDB} 
+              onHasChanged={this.onHasChanged} 
+              taskType='meeting'
+              userID={this.props.userID}
+            />
        </div>
     );
   }

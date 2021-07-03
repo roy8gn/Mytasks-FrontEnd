@@ -38,34 +38,40 @@ class AddNewTaskPanel extends React.Component{
         else{
             taskKey = Math.max.apply(Math, this.props.taskList.map(function(item) { return item.key; })) + 1 // Give a key to the new task
         }
-        
-        this.props.taskList.push(
-            {
-                key: taskKey,
-                name: this.state.taskName,
-                date: this.state.taskDate,
-                time: this.state.taskTime,
-                finished: false
-            }
-        )
-        
-        fetch('http://localhost:3001/'+this.props.taskType.toLowerCase()+"s", {
+
+        const newTask = {
+            key: taskKey,
+            name: this.state.taskName,
+            date: this.state.taskDate,
+            time: this.state.taskTime,
+            finished: false
+        }
+        const userID = this.props.userID
+        const taskType = this.props.taskType.toLowerCase()+'s'
+        const problemFlag = false
+        fetch('http://localhost:3001/'+taskType, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-                
-            })
+                userID: userID,
+                task: newTask
+            }) 
         })
             .then(response => response.json())
             .then(data => {
-                if(data.login===true){
-                document.getElementById('errorSignInMsg').innerHTML='';
-                this.props.onSignIn(data.user);
+                if(data.added===false){
+                    problemFlag=true
                 }
-                else document.getElementById('errorSignInMsg').innerHTML='Incorrect details, try again.';
             })
-      
-        this.props.onHasChanged()
+
+        if(problemFlag===true){
+            window.alert("Problem")
+        }
+        else{
+            this.props.taskList.push(newTask)
+            this.props.onHasChanged()
+        }
+        
         // Update the Server and DB about adding a new task. 
     }
 

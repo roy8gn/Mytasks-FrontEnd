@@ -17,7 +17,13 @@ class Projects extends React.Component{
     render(){
         return (
             <div>
-                <TaskList listName="Projects" taskList={this.props.projectsDB} onHasChanged={this.onHasChanged} taskType='project'/>
+                <TaskList 
+                listName="Projects" 
+                taskList={this.props.projectsDB} 
+                onHasChanged={this.onHasChanged} 
+                taskType='project'
+                userID={this.props.userID}
+                />
         </div>
         );
     }
