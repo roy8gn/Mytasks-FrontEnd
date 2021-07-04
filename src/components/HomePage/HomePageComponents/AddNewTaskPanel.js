@@ -47,8 +47,8 @@ class AddNewTaskPanel extends React.Component{
             finished: false
         }
         const userID = this.props.userID
-        const taskType = this.props.taskType.toLowerCase()+'s'
-        const problemFlag = false
+        const taskType = this.props.taskType+'s'
+        var problemFlag = false
         fetch('http://localhost:3001/'+taskType, {
             method: 'post',
             headers: {'Content-Type': 'application/json'},

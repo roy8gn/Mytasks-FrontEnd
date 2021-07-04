@@ -36,20 +36,45 @@ class TaskList extends React.Component{
         
         const index = this.props.taskList.map(function(x) {return x.key; }).indexOf(id);
         this.props.taskList.splice(index, 1);
-        console.log(this.props.taskList)
         this.props.onHasChanged()
-
-        // Update Server
     }
 
     onEditTask = (id, editedTask, editedDate, editedTime) => {
         const index = this.props.taskList.map(function(x) {return x.key; }).indexOf(id);
         var task = this.props.taskList[index]
+
         task.name = editedTask
         task.date = editedDate
         task.time = editedTime
+
+        const userID = this.props.userID
+        const taskType = this.props.taskType+'s'
+
+        console.log(task)
+        console.log("USERid " + userID)
         
-        this.props.onHasChanged()
+        var problemFlag = false
+        fetch('http://localhost:3001/'+taskType, {
+              method: 'put',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                  userID: userID,
+                  task: task
+              }) 
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.edited===false){
+                problemFlag=true
+            }
+        })
+      
+        if(problemFlag===true){
+              window.alert("Problem")
+        }
+        else{
+            this.props.onHasChanged()
+        }
     }
 
     onChangeStatusOfTask = (id) => { // finish/ongoing 
@@ -96,6 +121,8 @@ class TaskList extends React.Component{
                                     onDeleteTask={this.onDeleteTask}
                                     onEditTask={this.onEditTask}
                                     onChangeStatusOfTask={this.onChangeStatusOfTask}
+                                    taskType={this.props.taskType}
+                                    userID={this.props.userID}
                                 />
                             )
                         }

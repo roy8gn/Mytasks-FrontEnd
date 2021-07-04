@@ -16,18 +16,14 @@ class EditableTask extends React.Component {
   
     onChangeTaskNameChange = (event) => {
         this.setState({taskName: event.target.value});
-        console.log(this.state.taskName)
     }
 
     onSelectDate = (event) => {
         this.setState({taskDate: event.target.value});
-        console.log(this.state.taskDate)
     }
 
     onSelectTime = (event) => {
         this.setState({taskTime: event.target.value});
-        console.log(this.state.taskTime)
-
     }
 
   saveChangesOfTask = () => {

@@ -26,6 +26,8 @@ class Task extends React.Component {
         time={this.props.time}
         onEditTask={this.props.onEditTask}
         setEditable={this.setEditable}
+        taskType={this.props.taskType}
+        userID={this.props.userID}
       />
     }
     else{
@@ -39,6 +41,8 @@ class Task extends React.Component {
         setEditable={this.setEditable}
         onDeleteTask={this.props.onDeleteTask}
         onChangeStatusOfTask={this.props.onChangeStatusOfTask}
+        taskType={this.props.taskType}
+        userID={this.props.userID}
       />
     }
   }

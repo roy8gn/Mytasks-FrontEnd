@@ -15,7 +15,30 @@ class TaskDetails extends React.Component {
   }
 
   deleteTask = (event) => {
-    this.props.onDeleteTask(this.props.id);
+    const userID = this.props.userID
+    const taskKey = this.props.id
+    const problemFlag = false
+    const taskType = this.props.taskType.toLowerCase()+'s'
+    fetch('http://localhost:3001/'+taskType, {
+            method: 'delete',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                userID: userID,
+                key: taskKey
+            }) 
+        })
+            .then(response => response.json())
+            .then(data => {
+                if(data.deleted===false){
+                    problemFlag=true
+                }
+            })
+    if(problemFlag===true){
+              window.alert("Problem")
+    }
+    else{
+      this.props.onDeleteTask(taskKey);
+    }
   }
 
   editTask = (event) => {
