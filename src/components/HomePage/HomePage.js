@@ -6,7 +6,7 @@ import Events from './HomePageComponents/Events';
 import Meetings from './HomePageComponents/Meetings';
 import Projects from './HomePageComponents/Projects';
 import About from './HomePageComponents/About';
-
+import checklistPic from './HomePageComponents/checklist.png';
 class HomePage extends React.Component {
 
     constructor(props) {
@@ -44,9 +44,16 @@ class HomePage extends React.Component {
                     </Route>
                     
                     <Route exact path='/' >
+                        <div className="ma2 ba bw2 w-50 center bg-white-90 flex flex-column">
+                            <h2 className="">Welcome to MyTasks</h2>
+                            <p>The brand new Web Application for task managment.</p>
+                            <img className="center w-50 h-50" alt='logo' src={checklistPic}/> 
+                        </div>
                     </Route>
                     </Switch>
                 </Router>
+
+               
             </div>
         );
         

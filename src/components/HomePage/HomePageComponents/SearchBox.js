@@ -23,9 +23,9 @@ class SearchBox extends React.Component{
                 
                 <div className='f5 flex flex-wrap'>
                     <label className='mr2'>Sort By:</label>
-                    <button className='mr2 ba bw1 br-pill button bg-white' onClick={this.onChangeValue} value='byAlphabet' >Alpabet</button>
+                    <button className='mr2 ba bw1 br-pill button bg-white' onClick={this.onChangeValue} value='byAlphabet' >Alphabet</button>
                     <button className='mr2 ba bw1 br-pill button bg-white' onClick={this.onChangeValue} value='byDate' >Date</button>
-                    <button className='mr2 ba bw1 br-pill button bg-white' onClick={this.onChangeValue} value='byIndex' >Index</button>
+                    <button className='mr2 ba bw1 br-pill button bg-white' onClick={this.onChangeValue} value='byIndex' >Deafult</button>
                 </div>
             </div>
         );
