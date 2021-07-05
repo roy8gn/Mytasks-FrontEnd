@@ -19,7 +19,6 @@ class TaskList extends React.Component{
             
             case 'byAlphabet':
                 list.sort((a, b) => (a.name > b.name) ? 1 : -1)
-                console.log(list)
                 break;
             case 'byIndex':
                 list.sort((a, b) => (a.key > b.key) ? 1 : -1)
@@ -39,20 +38,7 @@ class TaskList extends React.Component{
         this.props.onHasChanged()
     }
 
-    onEditTask = (id, editedTask, editedDate, editedTime) => {
-        const index = this.props.taskList.map(function(x) {return x.key; }).indexOf(id);
-        var task = this.props.taskList[index]
-
-        task.name = editedTask
-        task.date = editedDate
-        task.time = editedTime
-
-        const userID = this.props.userID
-        const taskType = this.props.taskType+'s'
-
-        console.log(task)
-        console.log("USERid " + userID)
-        
+    onUpdateServerAboutEditOfTask = (userID, taskType, task) => {
         var problemFlag = false
         fetch('http://localhost:3001/'+taskType, {
               method: 'put',
@@ -70,19 +56,33 @@ class TaskList extends React.Component{
         })
       
         if(problemFlag===true){
-              window.alert("Problem")
         }
         else{
             this.props.onHasChanged()
         }
     }
 
+    onEditTask = (id, editedTask, editedDate, editedTime) => {
+        const index = this.props.taskList.map(function(x) {return x.key; }).indexOf(id);
+        var task = this.props.taskList[index]
+
+        task.name = editedTask
+        task.date = editedDate
+        task.time = editedTime
+
+        const userID = this.props.userID
+        const taskType = this.props.taskType+'s'
+        this.onUpdateServerAboutEditOfTask(userID, taskType, task)
+    }
+
     onChangeStatusOfTask = (id) => { // finish/ongoing 
         const index = this.props.taskList.map(function(x) {return x.key; }).indexOf(id);
         var task = this.props.taskList[index]
         task.finished=!task.finished
-        this.props.onHasChanged()
-        // Update Server
+        
+        const userID = this.props.userID
+        const taskType = this.props.taskType+'s'
+        this.onUpdateServerAboutEditOfTask(userID, taskType, task)
     }
 
     onSearchChange = (event) => {

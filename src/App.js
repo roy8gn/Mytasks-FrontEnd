@@ -8,9 +8,7 @@ import Particles from 'react-particles-js';
 import HomePage from './components/HomePage/HomePage';
 
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';  
-import Scroll from './components/HomePage/HomePageComponents/Scroll';
-import { userMock } from './components/Form/FormComponents/UserMock';
-import { userProfile, clone } from './UserProfile';
+
 
 
 const particlesOptions = {

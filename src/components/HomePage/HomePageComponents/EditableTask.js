@@ -10,7 +10,8 @@ class EditableTask extends React.Component {
     this.state = {
         taskName: '',
         taskDate: '',
-        taskTime: ''
+        taskTime: '',
+        alertShow: false,
     }
   }
   
@@ -28,12 +29,29 @@ class EditableTask extends React.Component {
 
   saveChangesOfTask = () => {
     if(!this.state.taskDate || !this.state.taskName || !this.state.taskTime){
-        alert('Enter all the datails!')
-        return;
+      this.setState({alertShow: true})
+      return;
     }  
+    this.setState({alertShow: false})
     this.props.onEditTask(this.props.id, this.state.taskName, this.state.taskDate, this.state.taskTime)
     this.props.setEditable()
 
+  }
+
+  showAlert = () => {
+    if(this.state.alertShow===true){
+        return(
+            <div className='w-100 center'>
+                <p className='red f4 center code'>You must fill all the details!</p>
+            </div>
+            
+        )
+    }
+    else{
+        return(
+            <p></p>
+        )
+    }
   }
 
   render(){
@@ -47,7 +65,7 @@ class EditableTask extends React.Component {
         <div className="br-pill ba bw1 pa2 white b--black button shadow-1 mr3 bg-blue pointer flex" onClick={this.saveChangesOfTask}>
             <BiSave className='f4'/>
         </div>
-        
+        {this.showAlert()}
 
       </div>
     );

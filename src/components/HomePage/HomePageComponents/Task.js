@@ -14,7 +14,6 @@ class Task extends React.Component {
   setEditable = () => {
     if(this.state.editable===false) this.setState({editable: true})
     else this.setState({editable: false})
-    console.log(this.state.editable)
   }
 
   showTask = () => {

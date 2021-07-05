@@ -27,7 +27,7 @@ class SignIn extends React.Component {
 
   tryToLogIn = (event) =>{
     event.preventDefault();
-    const email = this.state.email;
+    const email = this.state.email.toLocaleLowerCase();
     const password = this.state.password;
     
     fetch('http://localhost:3001/', {
@@ -66,12 +66,6 @@ class SignIn extends React.Component {
             >
               
           </SubmitBtn>
-          
-          <Link
-            className='ma2 no-underline text1 pointer dark-blue ma2 center'
-            to='/forgotPassword'>
-              Forgot Password?
-          </Link>
 
           <Link
             className='ma2 no-underline text1 pointer dark-blue ma2 center'

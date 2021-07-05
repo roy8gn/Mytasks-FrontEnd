@@ -22,7 +22,7 @@ class SignUpForm extends React.Component {
 
   tryToSignUp = (event) => {
     event.preventDefault();
-    var emailSignUp = this.state.emailSignUp;
+    var emailSignUp = this.state.emailSignUp.toLocaleLowerCase();
     var passwordSignUp = this.state.passwordSignUp;
     var passwordConfirmationSignUp = this.state.passwordConfirmationSignUp;
     var userNameSignUp = this.state.userNameSignUp

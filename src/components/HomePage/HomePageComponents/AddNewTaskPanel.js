@@ -2,6 +2,7 @@ import React from 'react';
 import ReactTooltip from 'react-tooltip';
 import './PageStyle.css'
 import {AiOutlinePlus} from 'react-icons/ai';
+
 class AddNewTaskPanel extends React.Component{
 
     constructor(props){
@@ -9,7 +10,8 @@ class AddNewTaskPanel extends React.Component{
         this.state = {
             taskName: '',
             taskDate: '',
-            taskTime: ''
+            taskTime: '',
+            alertShow: false,
         }
     }
 
@@ -28,9 +30,10 @@ class AddNewTaskPanel extends React.Component{
     AddNewTask = (event) => {
 
         if(!this.state.taskDate || !this.state.taskName || !this.state.taskTime){
-            alert('Enter all the datails!')
+            this.setState({alertShow: true})
             return;
         }
+        this.setState({alertShow: false})
         var taskKey = -1;
         if(this.props.taskList.length===0){
             taskKey = 0;
@@ -75,8 +78,24 @@ class AddNewTaskPanel extends React.Component{
         // Update the Server and DB about adding a new task. 
     }
 
+    showAlert = () => {
+        if(this.state.alertShow===true){
+            return(
+                <div className='w-100'>
+                    <p className='red center f3 code'>You must fill all the details!</p>
+                </div>
+                
+            )
+        }
+        else{
+            return(
+                <p></p>
+            )
+        }
+    }
+
     render(){
-        const taskNote = "Add a new " + this.props.taskType
+        const taskNote = "Add a new " + this.props.taskType.toLowerCase()
         return(
             <div className='center mv2 flex flex-wrap'>
                         <ReactTooltip/>
@@ -87,6 +106,7 @@ class AddNewTaskPanel extends React.Component{
                         <button className="br-pill ml2 b--black white f3 ba bw1 pa2 button shadow-1 mr3 bg-blue pointer" onClick={this.AddNewTask}>
                             <AiOutlinePlus />
                         </button>
+                        {this.showAlert()}
             </div>
         );
     }

@@ -8,7 +8,6 @@ class SearchBox extends React.Component{
 
     onChangeValue = (event) => {
         this.props.onChangeSortType(event.target.value)
-        console.log(event.target.value)
     }
 
     render(){
@@ -17,7 +16,7 @@ class SearchBox extends React.Component{
                 <input
                     className='mh2 pa2 mb2 ba bw1' 
                     type='search'
-                    placeholder={'Search '+ this.props.taskType +'s here'}
+                    placeholder={'Search '+ this.props.taskType.toLowerCase() +'s here'}
                     onChange={this.props.searchChange}
                 />
                 
